@@ -59,3 +59,6 @@ http://127.0.0.1:5001
 * İlerleyen aşamalarda gerçek bir AI API entegrasyonu denemek
 * Kullanıcı deneyimini geliştirmek
 
+## 📸 Uygulama
+
+![Stardew AI ana ekranı](screenshot.png)
