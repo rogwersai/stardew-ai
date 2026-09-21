@@ -1,0 +1,13 @@
+mineral_tr,mineral_en,location,floors,sell_price
+Bakır Cevheri,Copper Ore,Madenler,1-39,5
+Demir Cevheri,Iron Ore,Madenler,40-79,10
+Altın Cevheri,Gold Ore,Madenler,80-120,25
+Kömür,Coal,Madenler,1-120,15
+Kuvars,Quartz,Madenler,1-120,25
+Ametist,Amethyst,Madenler,1-120,100
+Topaz,Topaz,Madenler,1-120,80
+Yeşim,Jade,Madenler,1-120,200
+Zümrüt,Emerald,Madenler,1-120,250
+Yakut,Ruby,Madenler,1-120,250
+Elmas,Diamond,Madenler,1-120,750
+Akuamarin,Aquamarine,Madenler,1-120,180

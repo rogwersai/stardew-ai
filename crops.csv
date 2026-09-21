@@ -1,0 +1,18 @@
+crop_tr,crop_en,season,growth_days,sell_price,seed_price,regrowth_days
+Yaban Mersini,Blueberry,Yaz,13,50,80,4
+Acı Biber,Hot Pepper,Yaz,5,40,40,3
+Kavun,Melon,Yaz,12,250,80,0
+Domates,Tomato,Yaz,11,60,50,4
+Mısır,Corn,Yaz|Sonbahar,14,50,150,4
+Buğday,Wheat,Yaz|Sonbahar,4,25,10,0
+Kızılcık,Cranberries,Sonbahar,7,75,240,5
+Bal Kabağı,Pumpkin,Sonbahar,13,320,100,0
+Tatlı Patates,Yam,Sonbahar,10,160,50,0
+Patlıcan,Eggplant,Sonbahar,5,60,20,5
+Üzüm,Grape,Yaz,10,80,60,3
+Şalgam,Parsnip,İlkbahar,4,35,20,0
+Yeşil Fasulye,Green Bean,İlkbahar,10,40,60,3
+Karnabahar,Cauliflower,İlkbahar,12,175,80,0
+Patates,Potato,İlkbahar,6,80,50,0
+Lahana,Kale,İlkbahar,6,110,70,0
+Çilek,Strawberry,İlkbahar,8,120,100,4

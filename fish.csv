@@ -1,0 +1,9 @@
+fish_tr,fish_en,season,location,time,sell_price
+Levrek,Bass,Her mevsim,Dağ Gölü,06:00-19:00,100
+Sazan,Carp,Her mevsim,Dağ Gölü|Gizli Orman,06:00-19:00,30
+Turna,Pike,Yaz|Kış,Nehrin tamamı|Dağ Gölü,09:00-02:00,100
+Kedi Balığı,Catfish,İlkbahar|Sonbahar,Nehrin tamamı|Gizli Orman,06:00-00:00,200
+Sardalya,Sardine,İlkbahar|Yaz|Sonbahar,Deniz,06:00-19:00,40
+Hamsi,Anchovy,İlkbahar|Sonbahar,Deniz,06:00-02:00,30
+Ahtapot,Octopus,Yaz,Deniz,06:00-13:00,150
+Mürekkep Balığı,Squid,Kış,Deniz,18:00-02:00,80

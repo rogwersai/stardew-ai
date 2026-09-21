@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stardew AI</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family: "Press Start 2P", monospace;
+
+            background:
+                linear-gradient(
+                    rgba(72, 103, 63, 0.25),
+                    rgba(72, 103, 63, 0.45)
+                ),
+                linear-gradient(
+                    #8fc9e8 0%,
+                    #b9dfec 42%,
+                    #78a85d 43%,
+                    #527c43 100%
+                );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+            color: #39291d;
+        }
+
+        /* PIXEL BULUTLAR */
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+
+            width: 140px;
+            height: 35px;
+
+            background: #fff8df;
+
+            box-shadow:
+                30px -15px 0 #fff8df,
+                65px -5px 0 #fff8df,
+                95px 8px 0 #fff8df;
+
+            opacity: 0.85;
+
+            z-index: -1;
+        }
+
+        body::before {
+            top: 12%;
+            left: 8%;
+        }
+
+        body::after {
+            top: 20%;
+            right: 5%;
+            transform: scale(0.7);
+        }
+
+        /* ANA PANEL */
+
+        .container {
+            width: min(760px, 92%);
+
+            background: #f6e4b4;
+
+            border: 6px solid #70452c;
+
+            box-shadow:
+                8px 8px 0 #38261d,
+                inset 0 0 0 4px #c69255,
+                inset 0 0 0 8px #e9c982;
+
+            padding: 38px 42px;
+
+            position: relative;
+        }
+
+        /* ÜST AHŞAP ŞERİT */
+
+        .container::before {
+            content: "";
+
+            position: absolute;
+
+            top: -6px;
+            left: -6px;
+            right: -6px;
+
+            height: 18px;
+
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    #8b5a38 0px,
+                    #8b5a38 28px,
+                    #74472e 28px,
+                    #74472e 31px
+                );
+
+            border: 6px solid #70452c;
+            border-bottom: none;
+        }
+
+        .title {
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .title h1 {
+            margin: 0;
+
+            font-size: clamp(27px, 5vw, 46px);
+
+            color: #fff1a8;
+
+            text-shadow:
+                4px 4px 0 #71442d,
+                -2px -2px 0 #71442d,
+                2px -2px 0 #71442d,
+                -2px 2px 0 #71442d;
+        }
+
+        .subtitle {
+            text-align: center;
+
+            margin: 18px 0 30px;
+
+            font-size: 11px;
+            line-height: 1.8;
+
+            color: #63432d;
+        }
+
+        /* INPUT */
+
+        .input-area {
+            display: flex;
+            gap: 12px;
+        }
+
+        input {
+            min-width: 0;
+            flex: 1;
+
+            padding: 17px;
+
+            font-family: inherit;
+            font-size: 11px;
+
+            color: #39291d;
+
+            background: #fff9dc;
+
+            border: 4px solid #70452c;
+
+            outline: none;
+
+            box-shadow:
+                inset 3px 3px 0 #dbc58f,
+                4px 4px 0 #a16d45;
+        }
+
+        input:focus {
+            background: #fffdf0;
+        }
+
+        input::placeholder {
+            color: #987d5d;
+        }
+
+        /* BUTON */
+
+        button {
+            padding: 15px 18px;
+
+            font-family: inherit;
+            font-size: 11px;
+
+            color: #fff5c9;
+
+            background: #6f9b48;
+
+            border: 4px solid #42622d;
+
+            box-shadow:
+                inset 3px 3px 0 #a7c56d,
+                4px 4px 0 #473326;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #80aa53;
+        }
+
+        button:active {
+            transform: translate(3px, 3px);
+
+            box-shadow:
+                inset 3px 3px 0 #a7c56d;
+        }
+
+        /* CEVAP */
+
+        .answer {
+            margin-top: 28px;
+
+            padding: 22px;
+
+            background: #fff7d5;
+
+            border: 4px solid #70452c;
+
+            box-shadow:
+                inset 3px 3px 0 #e0c78e,
+                5px 5px 0 #a16d45;
+
+            font-size: 11px;
+            line-height: 2;
+
+            animation: appear 0.25s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ÖRNEK SORULAR */
+
+        .examples {
+            margin-top: 30px;
+        }
+
+        .examples-title {
+            margin-bottom: 15px;
+
+            font-size: 10px;
+            color: #63432d;
+        }
+
+        .example {
+            display: inline-block;
+
+            margin: 4px;
+            padding: 10px 12px;
+
+            background: #e7c985;
+
+            border: 3px solid #8b5a38;
+
+            box-shadow: 3px 3px 0 #70452c;
+
+            font-size: 8px;
+        }
+
+        /* ALT KISIM */
+
+        .footer {
+            margin-top: 28px;
+
+            text-align: center;
+
+            font-size: 8px;
+
+            color: #795a3d;
+        }
+
+        /* MOBİL */
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 30px 22px;
+            }
+
+            .input-area {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .example {
+                font-size: 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="title">
+            <h1>🌱 STARDEW AI</h1>
+        </div>
+
+        <div class="subtitle">
+            ✦ Çiftliğinin yardımcısı ✦
+        </div>
+
+        <form method="POST">
+
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    name="character"
+                    placeholder="Ne öğrenmek istiyorsun?"
+                    autocomplete="off"
+                    required
+                >
+
+                <button type="submit">
+                    SOR
+                </button>
+
+            </div>
+
+        </form>
+
+        {% if answer %}
+
+        <div class="answer">
+            {{ answer }}
+        </div>
+
+        {% endif %}
+
+        <div class="examples">
+
+            <div class="examples-title">
+                ★ ÖRNEK SORULAR
+            </div>
+
+            <span class="example">
+                🌱 Yazın ne ekmeliyim?
+            </span>
+
+            <span class="example">
+                💰 En karlı ürün ne?
+            </span>
+
+            <span class="example">
+                👤 Abigail ne sever?
+            </span>
+
+            <span class="example">
+                💎 Elmas nerede?
+            </span>
+
+            <span class="example">
+                🐟 Levrek nerede?
+            </span>
+
+            <span class="example">
+                💸 1000g param var ne ekmeliyim?
+            </span>
+
+        </div>
+
+        <div class="footer">
+            ★ STARDEW AI ★
+        </div>
+
+    </div>
+
+</body>
+</html>
